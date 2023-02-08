@@ -1,65 +1,41 @@
-twelch555/wp-cli-theme-active-on-sites
-======================================
+WP-CLI Plugin Active on Sites
+===============================
 
-
-
-[![Build Status](https://travis-ci.org/twelch555/wp-cli-theme-active-on-sites.svg?branch=master)](https://travis-ci.org/twelch555/wp-cli-theme-active-on-sites)
-
-Quick links: [Using](#using) | [Installing](#installing) | [Contributing](#contributing) | [Support](#support)
-
-## Using
-
-~~~
-wp hello-world 
-~~~
-
-**EXAMPLES**
-
-    # Greet the world.
-    $ wp hello-world
-    Success: Hello World!
+A [WP-CLI](http://wp-cli.org/) command to list all sites in a Multisite network that have activated a given plugin.
 
 ## Installing
 
-Installing this package requires WP-CLI v2.5 or greater. Update to the latest stable release with `wp cli update`.
+`wp package install iandunn/wp-cli-plugin-active-on-sites`
 
-Once you've done so, you can install the latest stable version of this package with:
+## Usage
 
-```bash
-wp package install twelch555/wp-cli-theme-active-on-sites:@stable
+`wp plugin active-on-sites <plugin_slug>`
+
+### Options
+[--field=<field>]
+	Prints the value of a single field for each site.
+[--fields=<fields>]
+        Comma-separated list of fields to show.
+[--format=<format>]
+        Render output in a particular format.
+
+## Example
+
+```shell
+> wp plugin active-on-sites eu-cookie-law-widget
+
+Checking each site  100% [==================================================] 0:02 / 0:03
+
+Sites where eu-cookie-law-widget is active:
++---------+----------------------------------------+
+| blog_id | url                                    |
++---------+----------------------------------------+
+| 320     | http://2014.madrid.wordcamp.dev/       |
+| 371     | http://2014.paris.wordcamp.dev/        |
+| 413     | http://2015.london.wordcamp.dev/       |
+| 464     | http://2015.milano.wordcamp.dev/       |
+| 522     | http://2016.geneva.wordcamp.dev/       |
+| 571     | http://2016.belfast.wordcamp.dev/      |
+| 654     | http://2017.europe.wordcamp.dev/       |
++---------+----------------------------------------+
 ```
-
-To install the latest development version of this package, use the following command instead:
-
-```bash
-wp package install twelch555/wp-cli-theme-active-on-sites:dev-master
-```
-
-## Contributing
-
-We appreciate you taking the initiative to contribute to this project.
-
-Contributing isn’t limited to just code. We encourage you to contribute in the way that best fits your abilities, by writing tutorials, giving a demo at your local meetup, helping other users with their support questions, or revising our documentation.
-
-For a more thorough introduction, [check out WP-CLI's guide to contributing](https://make.wordpress.org/cli/handbook/contributing/). This package follows those policy and guidelines.
-
-### Reporting a bug
-
-Think you’ve found a bug? We’d love for you to help us get it fixed.
-
-Before you create a new issue, you should [search existing issues](https://github.com/twelch555/wp-cli-theme-active-on-sites/issues?q=label%3Abug%20) to see if there’s an existing resolution to it, or if it’s already been fixed in a newer version.
-
-Once you’ve done a bit of searching and discovered there isn’t an open or fixed issue for your bug, please [create a new issue](https://github.com/twelch555/wp-cli-theme-active-on-sites/issues/new). Include as much detail as you can, and clear steps to reproduce if possible. For more guidance, [review our bug report documentation](https://make.wordpress.org/cli/handbook/bug-reports/).
-
-### Creating a pull request
-
-Want to contribute a new feature? Please first [open a new issue](https://github.com/twelch555/wp-cli-theme-active-on-sites/issues/new) to discuss whether the feature is a good fit for the project.
-
-Once you've decided to commit the time to seeing your pull request through, [please follow our guidelines for creating a pull request](https://make.wordpress.org/cli/handbook/pull-requests/) to make sure it's a pleasant experience. See "[Setting up](https://make.wordpress.org/cli/handbook/pull-requests/#setting-up)" for details specific to working on this package locally.
-
-## Support
-
-GitHub issues aren't for general support questions, but there are other venues you can try: https://wp-cli.org/#support
-
-
-*This README.md is generated dynamically from the project's codebase using `wp scaffold package-readme` ([doc](https://github.com/wp-cli/scaffold-package-command#wp-scaffold-package-readme)). To suggest changes, please submit a pull request against the corresponding part of the codebase.*

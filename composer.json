@@ -1,57 +1,19 @@
 {
-    "name": "twelch555/wp-cli-theme-active-on-sites",
-    "type": "wp-cli-package",
-    "description": "",
-    "homepage": "https://github.com/twelch555/wp-cli-theme-active-on-sites",
-    "license": "MIT",
-    "authors": [],
-    "require": {
-        "wp-cli/wp-cli": "^2.5"
-    },
-    "require-dev": {
-        "wp-cli/wp-cli-tests": "^3.0.11"
-    },
-    "config": {
-        "process-timeout": 7200,
-        "sort-packages": true,
-        "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
-        }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "2.x-dev"
-        },
-        "bundled": false,
-        "commands": [
-            "hello-world"
-        ]
-    },
-    "autoload": {
-        "psr-4": {
-            "WP_CLI\\HelloWorld\\": "src/"
-        },
-        "files": [
-            "hello-world-command.php"
-        ]
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "scripts": {
-        "behat": "run-behat-tests",
-        "behat-rerun": "rerun-behat-tests",
-        "lint": "run-linter-tests",
-        "phpcs": "run-phpcs-tests",
-        "phpunit": "run-php-unit-tests",
-        "prepare-tests": "install-package-tests",
-        "test": [
-            "@lint",
-            "@phpcs",
-            "@phpunit",
-            "@behat"
-        ]
-    },
-    "support": {
-        "issues": "https://github.com/twelch555/wp-cli-theme-active-on-sites/issues"
-    }
+	"name"        : "iandunn/wp-cli-plugin-active-on-sites",
+	"description" : "A WP-CLI command to list all sites in a Multisite network that have activated a given plugin",
+	"type"        : "wp-cli-package",
+	"homepage"    : "https://github.com/iandunn/wp-cli-plugin-active-on-sites",
+	"license"     : "GPLv2",
+
+	"authors" : [
+		{
+			"name"     : "Ian Dunn",
+			"email"    : "ian@iandunn.name",
+			"homepage" : "https://iandunn.name"
+		}
+	],
+
+	"autoload" : {
+		"files" : [ "wp-cli-plugin-active-on-sites.php" ]
+	}
 }
