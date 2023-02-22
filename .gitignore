@@ -11,3 +11,9 @@ composer.lock
 phpunit.xml
 phpcs.xml
 .phpcs.xml
+features/
+src/
+.distignore
+.editorconfig
+.travis.yml
+.wp-cli.yml

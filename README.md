@@ -1,15 +1,18 @@
 WP-CLI Plugin Active on Sites
 ===============================
 
-A [WP-CLI](http://wp-cli.org/) command to list all sites in a Multisite network that have activated a given plugin.
+A [WP-CLI](http://wp-cli.org/) command to list all sites in a Multisite network that have activated a given theme.
+
+## Credit
+This is a copy of Ian Dunn's iandunn/wp-cli-plugin-active-on-sites package altered to apply to themes instead of plugins. All the good bits are Ian's; all the errors are mine.
 
 ## Installing
 
-`wp package install iandunn/wp-cli-plugin-active-on-sites`
+`wp package install twelch555/wp-cli-theme-active-on-sites`
 
 ## Usage
 
-`wp plugin active-on-sites <plugin_slug>`
+`wp theme active-on-sites <theme_slug>`
 
 ### Options
 [--field=<field>]
@@ -22,11 +25,11 @@ A [WP-CLI](http://wp-cli.org/) command to list all sites in a Multisite network 
 ## Example
 
 ```shell
-> wp plugin active-on-sites eu-cookie-law-widget
+> wp theme active-on-sites chaplin
 
 Checking each site  100% [==================================================] 0:02 / 0:03
 
-Sites where eu-cookie-law-widget is active:
+Sites where chaplin is active:
 +---------+----------------------------------------+
 | blog_id | url                                    |
 +---------+----------------------------------------+

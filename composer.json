@@ -1,19 +1,20 @@
 {
-	"name"        : "iandunn/wp-cli-plugin-active-on-sites",
-	"description" : "A WP-CLI command to list all sites in a Multisite network that have activated a given plugin",
+	"name"        : "twelch555/wp-cli-theme-active-on-sites",
+	"description" : "A WP-CLI command to list all sites in a Multisite network that have activated a given theme",
 	"type"        : "wp-cli-package",
-	"homepage"    : "https://github.com/iandunn/wp-cli-plugin-active-on-sites",
+	"homepage"    : "https://github.com/twelch555/wp-cli-plugin-active-on-sites",
 	"license"     : "GPLv2",
 
 	"authors" : [
 		{
-			"name"     : "Ian Dunn",
-			"email"    : "ian@iandunn.name",
-			"homepage" : "https://iandunn.name"
+			"name"     : "Troy Welch",
+			"email"    : "twelch@tru.ca"
 		}
 	],
 
 	"autoload" : {
-		"files" : [ "wp-cli-plugin-active-on-sites.php" ]
+		"files" : [
+          "wp-cli-theme-active-on-sites.php"
+        ]
 	}
 }
