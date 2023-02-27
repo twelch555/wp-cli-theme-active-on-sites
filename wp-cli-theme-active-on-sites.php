@@ -127,7 +127,7 @@ function find_sites_with_theme( $target_theme ) {
 	$notify      = new \cli\progress\Bar( 'Checking sites', count( $sites ) );
 
 	foreach ( $sites as $site ) {
-		switch_to_blog( $site->blog_id );
+		switch_to_blog( $site->site_id );
 		$active_theme = get_option( 'stylesheet' );
 		$active_admin_email = get_option( 'admin_email' );
 		
@@ -135,8 +135,8 @@ function find_sites_with_theme( $target_theme ) {
 		//WP_CLI::line( "$target_theme" );
 		if ( $active_theme == $target_theme ) {
 			$found_sites[] = array(
-				'blog_id' => $site->blog_id,
-				'url'     => trailingslashit( get_site_url( $blog->blog_id ) ),
+				'blog_id' => $site->site_id,
+				'url'     => trailingslashit( get_site_url( $site->site_id ) ),
 				'admin_email' => $active_admin_email,
 			);
 		}
@@ -164,7 +164,7 @@ function display_results( $target_theme, $found_sites, $assoc_args ) {
 		return;
 	}
 	
-	$assoc_args['fields'] = array( 'blog_id', 'url', 'admin_email' );
+	$assoc_args['fields'] = array( 'site_id', 'url', 'admin_email' );
 
 	WP_CLI::line( "Sites where $target_theme is active:") ;
 
