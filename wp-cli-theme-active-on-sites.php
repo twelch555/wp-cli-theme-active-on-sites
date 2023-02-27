@@ -122,7 +122,7 @@ function pre_flight_checks( $target_theme ) {
  * @return array
  */
 function find_sites_with_theme( $target_theme ) {
-	$sites       = get_sites( array( 'number' => 10000 );
+	$sites       = get_sites( array( 'number' => 10000 ) );
 	$found_sites = array();
 	$notify      = new \cli\progress\Bar( 'Checking sites', count( $sites ) );
 
