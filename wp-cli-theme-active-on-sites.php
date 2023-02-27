@@ -104,12 +104,15 @@ function pre_flight_checks( $target_theme ) {
 		WP_CLI::error( "This only works on Multisite installations. Use `wp theme list -active` on regular installations." );
 	}
 
-	# if theme is installed on server
-	if ( ! WP_CLI::launch_self( 'theme list', array(), array( 'format' => 'csv', 'field' => 'name', 'name' => $target_theme )  )  ) {
+	# check if specified theme is installed on server
+	$raw_theme_object_array = wp_get_themes();
+	
+	if (! array_key_exists( $target_theme, $raw_theme_object_array)) {
 		WP_CLI::error( "$target_theme is not installed." );
 	}
 
 }
+
 
 /**
  * Find the sites that have the theme activated
@@ -119,23 +122,25 @@ function pre_flight_checks( $target_theme ) {
  * @return array
  */
 function find_sites_with_theme( $target_theme ) {
-	$sites       = get_sites( array( 'number' => 10000 ) );
+	$sites       = get_sites();
 	$found_sites = array();
 	$notify      = new \cli\progress\Bar( 'Checking sites', count( $sites ) );
 
 	foreach ( $sites as $site ) {
 		switch_to_blog( $site->blog_id );
-
-		$active_theme = get_option( 'active_theme', array() );
-		if ( is_array( $active_theme ) ) {
-			$active_theme = array_map( 'dirname', $active_theme );
-			if ( in_array( $target_theme, $active_theme, true ) ) {
-				$found_sites[] = array(
-					'blog_id' => $site->blog_id,
-					'url'     => trailingslashit( get_site_url( $blog->blog_id ) ),
-				);
-			}
+		$active_theme = get_option( 'stylesheet' );
+		$active_admin_email = get_option( 'admin_email' );
+		
+		//WP_CLI::line( "$active_theme" );
+		//WP_CLI::line( "$target_theme" );
+		if ( $active_theme == $target_theme ) {
+			$found_sites[] = array(
+				'blog_id' => $site->blog_id,
+				'url'     => trailingslashit( get_site_url( $blog->blog_id ) ),
+				'admin_email' => $active_admin_email,
+			);
 		}
+		
 
 		restore_current_blog();
 		$notify->tick();
@@ -158,14 +163,10 @@ function display_results( $target_theme, $found_sites, $assoc_args ) {
 		WP_CLI::line( "$target_theme is not active on any sites." );
 		return;
 	}
+	
+	$assoc_args['fields'] = array( 'blog_id', 'url', 'admin_email' );
 
-	if ( isset( $assoc_args['fields'] ) ) {
-		$assoc_args['fields'] = explode( ',', $assoc_args['fields'] );
-	} else {
-		$assoc_args['fields'] = array( 'blog_id', 'url' );
-	}
-
-	WP_CLI::line( "Sites where $target_theme is active:" );
+	WP_CLI::line( "Sites where $target_theme is active:") ;
 
 	$formatter = new \WP_CLI\Formatter( $assoc_args );
 	$formatter->display_items( $found_sites );

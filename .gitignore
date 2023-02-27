@@ -17,3 +17,4 @@ src/
 .editorconfig
 .travis.yml
 .wp-cli.yml
+.idea/
